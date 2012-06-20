@@ -1,10 +1,10 @@
 module ProductSelector
   class Question
-    include MongoMapper::EmbeddedDocument
+    include MongoMapper::Document
 
     key :text
 
-    one :answer, class_name: "ProductSelector::Answer"
+    many :answers, class_name: "ProductSelector::Answer"
     belongs_to :survey, class_name: "ProductSelector::Survey"
   end
 end

@@ -1,6 +1,6 @@
 module ProductSelector
   class Answer
-    include MongoMapper::EmbeddedDocument
+    include MongoMapper::Document
 
     key :value
 

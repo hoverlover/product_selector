@@ -1,6 +1,6 @@
 module ProductSelector
   class User
-    include MongoMapper::EmbeddedDocument
+    include MongoMapper::Document
 
     key :name
 
