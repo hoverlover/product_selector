@@ -37,3 +37,9 @@ step "the survey results are saved to the database" do
   Survey.count.should == 1
   Survey.first.questions.first.answer.value.should == "black"
 end
+
+step "only the matching products are displayed" do
+  output.should include "Reventon"
+  output.should_not include "Gallardo"
+  output.should_not include "Cayman"
+end
