@@ -1,3 +1,7 @@
+require 'product_selector/cli/question'
+require 'product_selector/cli/category_selection_question'
+require 'product_selector/cli/survey_question'
+
 module ProductSelector
   class CLI
     def self.input
@@ -11,28 +15,13 @@ module ProductSelector
     def self.start
       terminal = HighLine.new(input, output)
 
-      categories = Category.all
-
-      category_choice = terminal.choose do |menu|
-        menu.prompt = "Please choose from one of the following categories:"
-
-        categories.each do |category|
-          menu.choice(category.name)
-        end
-      end
-
-      survey = Survey.new
-      question = survey.questions.create! text: "What is your favorite color #{category_choice}?"
-
-      answer = terminal.ask question.text
-      question.create_answer value: answer
-      survey.save!
+      category_choice = CategorySelectionQuestion.new(terminal).ask
+      survey_answer = SurveyQuestion.new(terminal, category_choice).ask
 
       terminal.say "Thanks for taking the survey!"
 
-      matching_products = categories.detect { |c| c.name == category_choice }.products
-                                                                             .where(color: answer)
-                                                                             .map(&:name)
+      matching_products = ::Category.where(name: category_choice).first.products.where(color: survey_answer).map(&:name)
+
       if matching_products.empty?
         terminal.say "Sorry, but no products matched that color."
       else
