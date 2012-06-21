@@ -24,7 +24,7 @@ step "I am presented with the list of categories" do
   output.should include expected.join("\n")
 end
 
-step "the following menu prompt responses:" do |table|
+step "the following menu prompt responses are used:" do |table|
   @input = table.to_a.flatten.join("\n")
   ProductSelector.stub(:input).and_return(StringIO.new(@input))
 end

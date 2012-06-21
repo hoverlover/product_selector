@@ -5,7 +5,7 @@ Feature: Complete Survey
       | Ferrari     |
       | Lamborghini |
       | Porsche     |
-    And the following menu prompt responses:
+    And the following menu prompt responses are used:
       | 2     |
       | black |
 
