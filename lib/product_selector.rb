@@ -41,8 +41,16 @@ module ProductSelector
     question.create_answer value: answer
     survey.save!
 
-    terminal.say "Thanks for taking the survey!  Here are your matching products:"
-    matching_products = categories.detect { |c| c.name == category_choice }.products.where(color: answer).map(&:name)
-    terminal.say terminal.list matching_products
+    terminal.say "Thanks for taking the survey!"
+
+    matching_products = categories.detect { |c| c.name == category_choice }.products
+                                                                           .where(color: answer)
+                                                                           .map(&:name)
+    if matching_products.empty?
+      terminal.say "Sorry, but no products matched that color."
+    else
+      terminal.say "Here are your matching products:"
+      terminal.say terminal.list matching_products
+    end
   end
 end

@@ -35,11 +35,15 @@ end
 
 step "the survey results are saved to the database" do
   Survey.count.should == 1
-  Survey.first.questions.first.answer.value.should == "black"
+  Survey.first.questions.first.answer.value.should == @input.split("\n").last
 end
 
 step "only the matching products are displayed" do
   output.should include "Reventon"
   output.should_not include "Gallardo"
   output.should_not include "Cayman"
+end
+
+step "no matching products are displayed" do
+  output.should include "Sorry, but no products matched that color."
 end

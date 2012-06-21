@@ -18,11 +18,19 @@ Feature: Complete Survey
       | name   | color |
       | 928    | white |
       | Cayman | black |
-    And the following menu prompt responses are used:
-      | 2     |
-      | black |
 
   Scenario: With matching products
-    When I run the system
+    When the following menu prompt responses are used:
+      | 2     |
+      | black |
+    And I run the system
     Then the survey results are saved to the database
     And only the matching products are displayed
+
+  Scenario: With no matching products
+    When the following menu prompt responses are used:
+      | 1    |
+      | pink |
+    And I run the system
+    Then the survey results are saved to the database
+    And no matching products are displayed
