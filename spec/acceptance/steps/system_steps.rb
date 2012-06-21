@@ -1,14 +1,14 @@
 step "I run the system" do
   # If there was no input given just provide something so $stdin isn't used and doesn't block.
   if @input.nil?
-    ProductSelector.stub(:input).and_return(StringIO.new)
+    ProductSelector::CLI.stub(:input).and_return(StringIO.new)
   end
 
   @output = StringIO.new
-  ProductSelector.stub(:output).and_return(@output)
+  ProductSelector::CLI.stub(:output).and_return(@output)
 
   begin
-    ProductSelector.start
+    ProductSelector::CLI.start
   rescue EOFError
     # Rescue EOFError for times when we are only testing parts of the menu system
   end
@@ -26,7 +26,7 @@ end
 
 step "the following menu prompt responses are used:" do |table|
   @input = table.to_a.flatten.join("\n")
-  ProductSelector.stub(:input).and_return(StringIO.new(@input))
+  ProductSelector::CLI.stub(:input).and_return(StringIO.new(@input))
 end
 
 step "I am presented with the proper survey" do

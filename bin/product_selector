@@ -2,4 +2,4 @@
 
 require 'bootstrap'
 
-ProductSelector.start
+ProductSelector::CLI.start
