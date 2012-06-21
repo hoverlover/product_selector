@@ -1,0 +1,5 @@
+development:
+  uri: mongodb://localhost:27017/product_selector_development
+
+test:
+  uri: mongodb://localhost:27017/product_selector_test
