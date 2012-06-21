@@ -1,10 +1,8 @@
-module ProductSelector
-  class Question
-    include MongoMapper::Document
+class Question
+  include Mongoid::Document
 
-    key :text
+  field :text
 
-    many :answers, class_name: "ProductSelector::Answer"
-    belongs_to :survey, class_name: "ProductSelector::Survey"
-  end
+  embeds_one :answer
+  embedded_in :survey
 end

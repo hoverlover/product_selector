@@ -1,8 +1,5 @@
-module ProductSelector
-  class Survey
-    include MongoMapper::Document
+class Survey
+  include Mongoid::Document
 
-    many :questions, class_name: "ProductSelector::Question"
-    belongs_to :category, class_name: "ProductSelector::Category"
-  end
+  embeds_many :questions
 end

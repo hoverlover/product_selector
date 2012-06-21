@@ -1,9 +1,6 @@
-module ProductSelector
-  class Category
-    include MongoMapper::Document
+class Category
+  include Mongoid::Document
 
-    key :name
-
-    one :survey, class_name: "ProductSelector::Survey"
-  end
+  field :name
+  embeds_many :products
 end

@@ -1,9 +1,7 @@
-module ProductSelector
-  class User
-    include MongoMapper::Document
+class User
+  include Mongoid::Document
 
-    key :name
+  field :name, type: String
 
-    many :answers, class_name: "ProductSelector::Answer"
-  end
+  has_many :answers
 end
