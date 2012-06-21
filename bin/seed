@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'bootstrap'
+
+Category.collection.drop
+Survey.collection.drop
+
+shoes = Category.create! name: "Shoes"
+shoes.products.create! name: "Loafers", color: "black"
+shoes.products.create! name: "Loafers", color: "brown"
+
+socks = Category.create! name: "Socks"
+socks.products.create! name: "Tube", color: "white"
+socks.products.create! name: "Runners", color: "blue"
+
+shirts = Category.create! name: "Shirts"
+shirts.products.create! name: "Tank", color: "white"
+shirts.products.create! name: "Short sleeve", color: "black"
