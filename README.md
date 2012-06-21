@@ -1,29 +1,19 @@
 # ProductSelector
 
-TODO: Write a gem description
+## Prerequisites
 
-## Installation
+You must have MongoDB installed and running on port 27017
 
-Add this line to your application's Gemfile:
+## Seed the database
 
-    gem 'product_selector'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install product_selector
+`bin/seed`
 
 ## Usage
 
-TODO: Write usage instructions here
+For selecting a product:
 
-## Contributing
+`bin/product_selector`
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+For the admin interface (remove product, display survey results):
+
+`bin/product_selector -a`
